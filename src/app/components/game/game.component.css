@@ -6,8 +6,13 @@ footer > img {
     display: flex;
     flex-flow: row wrap;
     align-items: flex-start;
+    justify-content: center;
 }
 
 .flex-child {
-    flex-basis: 150px;
+    flex-basis: 375px;
+}
+
+.bee {
+    display: flex;
 }

@@ -2,14 +2,32 @@
 
     <div class="flex-parent">
         <div *ngFor="let bee of bees" class="flex-child">
-            <img [src]="bee.img" width="150px">
-            {{ bee.type }} {{ bee.hp }}
+            <div class="bee">
+                <div>
+                    <img [src]="bee.img" width="140px">
+                </div>
+                <div style="align-self: center;">
+                    <!-- Bee Icon -->
+                    <span style="font-size: 20px; font-weight: 700; display: inline-flex;">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#000000"><path d="M71.05078,15.00521l-13.10156,5.82292l10.65202,23.97754c-2.55393,3.53587 -4.10124,7.8432 -4.10124,12.52767c0,0.56591 0.12481,1.09666 0.16797,1.65169c-8.48673,-4.4331 -20.00401,-8.81836 -32.41797,-8.81836c-9.89717,0 -17.91667,8.0195 -17.91667,17.91667c0,9.89717 8.0195,17.91667 17.91667,17.91667c8.4608,0 16.41785,-2.09932 23.37565,-4.80111c-1.64597,3.72098 -3.03586,7.68341 -3.94727,11.96777h68.64323c-0.91141,-4.28436 -2.3013,-8.24679 -3.94726,-11.96777c6.95781,2.70179 14.91485,4.80111 23.37565,4.80111c9.89717,0 17.91667,-8.0195 17.91667,-17.91667c0,-9.89717 -8.0195,-17.91667 -17.91667,-17.91667c-12.41396,0 -23.93123,4.38526 -32.41797,8.81836c0.04316,-0.55504 0.16797,-1.08579 0.16797,-1.65169c0,-4.68447 -1.5473,-8.9918 -4.10124,-12.52767l10.65202,-23.97754l-13.10156,-5.82292l-9.58822,21.58398c-1.72444,-0.44732 -3.49876,-0.75586 -5.361,-0.75586c-1.86224,0 -3.63657,0.30854 -5.361,0.75586zM50.16667,107.5c0,4.98083 0.54422,9.78967 1.51172,14.33333h68.64323c0.96751,-4.54367 1.51172,-9.3525 1.51172,-14.33333zM56.61947,136.16667c6.47867,12.986 17.21153,21.5 29.38053,21.5c12.169,0 22.90186,-8.514 29.38053,-21.5z"></path></g></g></svg>
+                        <span style="margin-left: 5px;">{{ bee.type | titlecase }}</span>
+                    </span>
+                    <br> 
+                    <span style="font-size: 12px; margin-left: 36px;"> {{ bee.type | titlecase }} stats:</span>
+                    <br>
+                    <!-- green full heart -->
+                    <div style="margin-left: 36px;">
+                        <span style="display: inline-flex;">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#2ecc71"><path d="M118.25,21.5c-20.7475,0 -32.25,14.97833 -32.25,14.97833c0,0 -11.5025,-14.97833 -32.25,-14.97833c-21.77233,0 -39.41667,17.64433 -39.41667,39.41667c0,29.89217 35.20267,58.85983 45.01383,68.01167c11.30183,10.535 26.65283,24.08 26.65283,24.08c0,0 15.351,-13.545 26.65283,-24.08c9.81117,-9.15183 45.01383,-38.1195 45.01383,-68.01167c0,-21.77233 -17.64433,-39.41667 -39.41667,-39.41667z"></path></g></g></svg>
+                            <span style="margin-left: 5px; color: #2ecc71"><strong>{{ bee.hp }}</strong></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- green full heart -->
-    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#2ecc71"><path d="M118.25,21.5c-20.7475,0 -32.25,14.97833 -32.25,14.97833c0,0 -11.5025,-14.97833 -32.25,-14.97833c-21.77233,0 -39.41667,17.64433 -39.41667,39.41667c0,29.89217 35.20267,58.85983 45.01383,68.01167c11.30183,10.535 26.65283,24.08 26.65283,24.08c0,0 15.351,-13.545 26.65283,-24.08c9.81117,-9.15183 45.01383,-38.1195 45.01383,-68.01167c0,-21.77233 -17.64433,-39.41667 -39.41667,-39.41667z"></path></g></g></svg>
-
+    
     <!-- yellow full heart -->
     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#f1c40f"><path d="M118.25,21.5c-20.7475,0 -32.25,14.97833 -32.25,14.97833c0,0 -11.5025,-14.97833 -32.25,-14.97833c-21.77233,0 -39.41667,17.64433 -39.41667,39.41667c0,29.89217 35.20267,58.85983 45.01383,68.01167c11.30183,10.535 26.65283,24.08 26.65283,24.08c0,0 15.351,-13.545 26.65283,-24.08c9.81117,-9.15183 45.01383,-38.1195 45.01383,-68.01167c0,-21.77233 -17.64433,-39.41667 -39.41667,-39.41667z"></path></g></g></svg>
 
@@ -28,12 +46,7 @@
     <!-- sword for damage -->
     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#e67e22"><path d="M157.66667,14.33333l-34.48958,2.01563l-66.96354,73.45833l-8.51042,-8.51042l-10.30208,10.30208l11.42188,11.42188l-19.93229,23.51563l-4.70312,-4.70312l-10.07812,10.07813l25.97917,25.97917l10.07813,-10.07812l-4.70312,-4.70312l23.51563,-19.93229l11.42188,11.42188l10.30208,-10.30208l-8.51042,-8.51042l73.45833,-66.96354zM142.4375,29.5625l-0.67187,12.54167l-69.65104,63.38021l-5.59896,-5.59896l63.38021,-69.65104z"></path></g></g></svg>
     
-    <!-- bee -->
-    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#000000"><path d="M71.05078,15.00521l-13.10156,5.82292l10.65202,23.97754c-2.55393,3.53587 -4.10124,7.8432 -4.10124,12.52767c0,0.56591 0.12481,1.09666 0.16797,1.65169c-8.48673,-4.4331 -20.00401,-8.81836 -32.41797,-8.81836c-9.89717,0 -17.91667,8.0195 -17.91667,17.91667c0,9.89717 8.0195,17.91667 17.91667,17.91667c8.4608,0 16.41785,-2.09932 23.37565,-4.80111c-1.64597,3.72098 -3.03586,7.68341 -3.94727,11.96777h68.64323c-0.91141,-4.28436 -2.3013,-8.24679 -3.94726,-11.96777c6.95781,2.70179 14.91485,4.80111 23.37565,4.80111c9.89717,0 17.91667,-8.0195 17.91667,-17.91667c0,-9.89717 -8.0195,-17.91667 -17.91667,-17.91667c-12.41396,0 -23.93123,4.38526 -32.41797,8.81836c0.04316,-0.55504 0.16797,-1.08579 0.16797,-1.65169c0,-4.68447 -1.5473,-8.9918 -4.10124,-12.52767l10.65202,-23.97754l-13.10156,-5.82292l-9.58822,21.58398c-1.72444,-0.44732 -3.49876,-0.75586 -5.361,-0.75586c-1.86224,0 -3.63657,0.30854 -5.361,0.75586zM50.16667,107.5c0,4.98083 0.54422,9.78967 1.51172,14.33333h68.64323c0.96751,-4.54367 1.51172,-9.3525 1.51172,-14.33333zM56.61947,136.16667c6.47867,12.986 17.21153,21.5 29.38053,21.5c12.169,0 22.90186,-8.514 29.38053,-21.5z"></path></g></g></svg>
-
+    
     <button (click)="damageRandomBee()">HIT</button>
 
-    <footer>
-        <img src="./assets/footer.png" style="width: 100vw">
-    </footer>
 </div>
