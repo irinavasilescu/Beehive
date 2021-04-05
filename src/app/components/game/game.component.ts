@@ -9,6 +9,7 @@ import { ValuesService } from './../../services/values.service';
 export class GameComponent implements OnInit {
 
     bees: any = [];
+    gameOver = false;
 
     constructor(
         private readonly valuesService: ValuesService
@@ -39,5 +40,15 @@ export class GameComponent implements OnInit {
     pickRandomBee() {
         console.log('random bee index', Math.floor(Math.random() * this.bees.length));
         return Math.floor(Math.random() * this.bees.length);
+    }
+
+    damageRandomBee() {
+        const selectedBeeIndex = this.pickRandomBee();
+        const dryRunDamage = this.bees[selectedBeeIndex].hp - this.bees[selectedBeeIndex].damage;
+        if (dryRunDamage > 0) {
+            this.bees[selectedBeeIndex].hp = dryRunDamage;
+        } else {
+            this.bees[selectedBeeIndex].hp = 0;
+        }
     }
 }
