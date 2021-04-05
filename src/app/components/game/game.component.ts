@@ -16,6 +16,7 @@ export class GameComponent implements OnInit {
 
     ngOnInit(): void {
         this.initBeesState();
+        this.pickRandomBee();
     }
 
     initBeesState() {
@@ -33,5 +34,10 @@ export class GameComponent implements OnInit {
             )
         })
         console.log('bees', this.bees);
+    }
+
+    pickRandomBee() {
+        console.log('random bee index', Math.floor(Math.random() * this.bees.length));
+        return Math.floor(Math.random() * this.bees.length);
     }
 }
