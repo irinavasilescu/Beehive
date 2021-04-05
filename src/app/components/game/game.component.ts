@@ -32,13 +32,12 @@ export class GameComponent implements OnInit {
                         }
                     )
                 )
-            )
-        })
-        console.log('bees', this.bees);
+            );
+        });
     }
 
     pickRandomBee() {
-        console.log('random bee index', Math.floor(Math.random() * this.bees.length));
+        this.filterDeadBees();
         return Math.floor(Math.random() * this.bees.length);
     }
 
@@ -75,5 +74,9 @@ export class GameComponent implements OnInit {
         } else {
             bee.status = 'sick2';
         }
+    }
+
+    filterDeadBees() {
+        this.bees = this.bees.filter(bee => bee && bee.hp && bee.hp > 0);
     }
 }
