@@ -1,5 +1,12 @@
-<div *ngFor="let bee of bees">
-    {{ bee.type }} {{ bee.hp }}
-</div>
+<div class="game">
 
-<button (click)="damageRandomBee()">HIT</button>
+    <div *ngFor="let bee of bees">
+        {{ bee.type }} {{ bee.hp }}
+    </div>
+
+    <button (click)="damageRandomBee()">HIT</button>
+
+    <footer>
+        <img src="./assets/footer.png" style="width: 100vw">
+    </footer>
+</div>
