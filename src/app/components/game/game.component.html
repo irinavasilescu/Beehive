@@ -1,7 +1,10 @@
 <div class="game">
 
-    <div *ngFor="let bee of bees">
-        {{ bee.type }} {{ bee.hp }}
+    <div class="flex-parent">
+        <div *ngFor="let bee of bees" class="flex-child">
+            <img [src]="bee.img" width="150px">
+            {{ bee.type }} {{ bee.hp }}
+        </div>
     </div>
 
     <button (click)="damageRandomBee()">HIT</button>

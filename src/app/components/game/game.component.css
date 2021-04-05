@@ -1,3 +1,13 @@
 footer > img {
     width: 100vw;
 }
+
+.flex-parent {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+}
+
+.flex-child {
+    flex-basis: 150px;
+}
