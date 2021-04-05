@@ -10,9 +10,20 @@ footer > img {
 }
 
 .flex-child {
-    flex-basis: 375px;
+    flex-basis: 300px;
 }
 
 .bee {
     display: flex;
+    border-radius: 15px;
+    border: 1px solid #cde7e9;
+    margin: 5px;
+    padding: 5px;
+}
+
+.hive {
+    display: flex;
+    border-radius: 15px;
+    margin: 5px;
+    padding: 5px;
 }

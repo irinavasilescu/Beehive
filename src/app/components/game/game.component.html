@@ -1,10 +1,26 @@
 <div class="game">
 
+    <br>
+    <div class="hive" style="justify-content: center;">
+        <div>
+            <img src="./assets/hive.png" width="90px">
+        </div>
+        <div style="align-self: center;">
+            <span style="font-size: 20px; font-weight: 700; display: inline-flex;">
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#000000"><path d="M50.16667,14.33333v14.33333h43v7.16667h-57.33333v14.33333h14.33333v7.16667h-28.66667v14.33333h57.33333v7.16667h-64.5v14.33333h93.16667v7.16667h-5.82292c3.58333,3.58333 5.82292,8.5944 5.82292,14.33333h35.83333v-14.33333h-21.5v-7.16667h35.83333v-14.33333h-64.5v-7.16667h57.33333v-14.33333h-86v-7.16667h71.66667v-14.33333h-28.66667v-7.16667h14.33333v-14.33333zM28.66667,100.33333v14.33333h35.83333c0,-5.73893 2.23958,-10.75 5.82292,-14.33333zM86,107.5c-2.1556,0 -4.19922,0.81185 -4.92708,2.23958c-1.42774,1.42774 -2.23958,2.77149 -2.23958,4.92708c0,0.72787 -0.05599,1.51172 0.67188,2.23958c0.72787,2.85547 3.63933,4.92708 6.49479,4.92708c2.85547,0 5.76693,-2.07161 6.49479,-4.92708c0,-0.72786 0.67188,-1.51172 0.67188,-2.23958c0,-2.1556 -0.81185,-3.49935 -2.23958,-4.92708c-0.72786,-1.42774 -2.77149,-2.23958 -4.92708,-2.23958zM43,121.83333v14.33333h35.83333v7.16667h-21.5v14.33333h57.33333v-14.33333h-21.5v-7.16667h35.83333v-14.33333h-22.84375c-2.85547,8.5944 -10.83399,14.33333 -20.15625,14.33333c-9.32226,0 -17.30078,-5.73893 -20.15625,-14.33333z"></path></g></g></svg>
+                <span style="margin-left: 5px;">Hive</span>
+            </span>
+            <br>
+            <span style="font-size: 12px; margin-left: 36px;"> Hive stats:</span>
+        </div>
+    </div>
+    <br>
+
     <div class="flex-parent">
         <div *ngFor="let bee of bees" class="flex-child">
             <div class="bee">
                 <div>
-                    <img [src]="bee.img" width="140px">
+                    <img [src]="bee.img" width="120px">
                 </div>
                 <div style="align-self: center;">
                     <!-- Bee Icon -->
@@ -46,6 +62,8 @@
     <!-- sword for damage -->
     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#e67e22"><path d="M157.66667,14.33333l-34.48958,2.01563l-66.96354,73.45833l-8.51042,-8.51042l-10.30208,10.30208l11.42188,11.42188l-19.93229,23.51563l-4.70312,-4.70312l-10.07812,10.07813l25.97917,25.97917l10.07813,-10.07812l-4.70312,-4.70312l23.51563,-19.93229l11.42188,11.42188l10.30208,-10.30208l-8.51042,-8.51042l73.45833,-66.96354zM142.4375,29.5625l-0.67187,12.54167l-69.65104,63.38021l-5.59896,-5.59896l63.38021,-69.65104z"></path></g></g></svg>
     
+    <!-- boom -->
+    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g><path d="M82.41667,14.33333l-10.75,35.83333l-39.41667,-25.08333l17.91667,43l-35.77242,10.34508l35.77242,14.73825l-21.5,32.25l39.41667,-10.75l7.16667,43l21.5,-39.41667l43,17.91667l-21.5,-39.41667l39.41667,-17.91667l-43,-7.16667l25.08333,-39.41667l-43,17.91667z" fill="#ff3d00"></path><path d="M83.86792,46.90583l2.9025,7.25267l4.04917,10.12292l10.06917,-4.1925l11.438,-4.76583l-6.7295,10.57083l-8.72183,13.70267l16.02467,2.66958l8.213,1.37242l-7.31,3.32175l-10.52783,4.78375l5.53625,10.15158l6.86925,12.59542l-14.79558,-6.16692l-8.93683,-3.72308l-4.63683,8.49967l-6.58258,12.06508l-2.0425,-12.26933l-1.9565,-11.73183l-11.47383,3.12825l-11.72108,3.19992l5.57567,-8.3635l7.27058,-10.90767l-12.12242,-4.99517l-7.32792,-3.02075l6.21708,-1.79883l11.57058,-3.34683l-4.62967,-11.11908l-4.76583,-11.438l10.57083,6.7295l11.98625,7.62533l4.08142,-13.60592l1.90633,-6.34608" fill="#ff9e80"></path><path d="M81.48858,78.90858l-13.40525,-10.82525l7.16667,17.91667l-7.16667,10.75l10.75,-3.58333l7.16667,14.33333l3.58333,-17.91667l14.33333,-3.58333l-14.33333,-3.58333l-3.58333,-17.91667z" fill="#fff59d"></path></g></g></svg>
     
     <button (click)="damageRandomBee()">HIT</button>
 
