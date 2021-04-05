@@ -20,9 +20,17 @@ export class GameComponent implements OnInit {
 
     initBeesState() {
         this.valuesService.beeTypesArray.forEach(beeType => {
-            for (let i; i <= this.valuesService.hive[beeType].total; i++) {
-                this.bees.push(this.valuesService.hive[beeType])
-            }
+            this.bees.push(
+                ...Array.from(
+                    { length: this.valuesService.hive[beeType].total },
+                    () => (
+                        {
+                            ...this.valuesService.hive[beeType],
+                            ...{ type: beeType }
+                        }
+                    )
+                )
+            )
         })
         console.log('bees', this.bees);
     }
