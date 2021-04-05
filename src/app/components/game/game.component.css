@@ -27,3 +27,23 @@ footer > img {
     margin: 5px;
     padding: 5px;
 }
+
+.healthy {
+    color: #2ECC71;
+}
+
+.warning1 {
+    color: #F1C40F;
+}
+
+.warning2 {
+    color: #F1C40F;
+}
+
+.sick1 {
+    color: #E74C3C;
+}
+
+.sick2 {
+    color: #E74C3C;
+}
