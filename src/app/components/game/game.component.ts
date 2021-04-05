@@ -43,12 +43,21 @@ export class GameComponent implements OnInit {
     }
 
     damageRandomBee() {
+        this.checkGameOver();
         const selectedBeeIndex = this.pickRandomBee();
         const dryRunDamage = this.bees[selectedBeeIndex].hp - this.bees[selectedBeeIndex].damage;
         if (dryRunDamage > 0) {
             this.bees[selectedBeeIndex].hp = dryRunDamage;
         } else {
             this.bees[selectedBeeIndex].hp = 0;
+        }
+    }
+
+    checkGameOver() {
+        if (this.bees.filter(bee => bee.type === this.valuesService.beeTypes.queen)[0].hp === 0) {
+            alert('GAME OVER');
+        } else if (this.bees.filter(bee => bee.type !== this.valuesService.beeTypes.queen).every(bee => bee.hp === 0)) {
+            alert('GAME OVER');
         }
     }
 }
