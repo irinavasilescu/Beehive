@@ -119,9 +119,19 @@
 }
 
 .hit-button {
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-top: 13px;
+    padding-bottom: 13px;
     border: 0;
+    background-color: var(--warning);
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 5px;
+}
+
+.hit-button:focus {
+    outline: none;
 }
