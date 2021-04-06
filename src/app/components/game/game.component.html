@@ -4,10 +4,10 @@
     </header>
 
     <!-- GAME OVER STATE -->
-    <div *ngIf="gameOver">
-        GAME OVER!
+    <div *ngIf="gameOver" style="text-align: center;">
+        <img src="./assets/game_over.png" style="width: 50vw">
         <br>
-        <button (click)="start()">START AGAIN</button>
+        <button class="button" (click)="start()">START AGAIN</button>
     </div>
 
     <div *ngIf="!gameOver">
@@ -20,7 +20,7 @@
     
         <!-- HIT BUTTON -->
         <div style="text-align: center;">
-            <button class="hit-button" (click)="damageRandomBee()">HIT</button>
+            <button class="button" (click)="damageRandomBee()">HIT</button>
         </div>
 
         <!-- DAMAGED BEE -->

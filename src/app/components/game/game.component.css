@@ -17,7 +17,7 @@
     border: 1px solid var(--warning);
 }
 
-.hit-button {
+.button {
     padding-left: 35px;
     padding-right: 35px;
     padding-top: 13px;
@@ -31,6 +31,6 @@
     margin: 5px;
 }
 
-.hit-button:focus {
+.button:focus {
     outline: none;
 }
