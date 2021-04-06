@@ -1,5 +1,32 @@
-footer > img {
-    width: 100vw;
+.game {
+    --healthy: #2ECC71;
+    --warning: #F1C40F;
+    --sick: #E74C3C;
+    --damage: #E67E22;
+}
+
+.healthy {
+    color: var(--healthy);
+}
+
+.warning1 {
+    color: var(--warning);
+}
+
+.warning2 {
+    color: var(--warning);
+}
+
+.sick1 {
+    color: var(--sick);
+}
+
+.sick2 {
+    color: var(--sick);
+}
+
+.damage {
+    color: var(--damage);
 }
 
 .flex-parent {
@@ -16,7 +43,7 @@ footer > img {
 .bee {
     display: flex;
     border-radius: 15px;
-    border: 1px solid #cde7e9;
+    border: 1px solid var(--warning);
     margin: 5px;
     padding: 15px;
 }
@@ -72,35 +99,23 @@ footer > img {
     margin-left: 5px;
 }
 
+.damaged-bee {
+    display: flex;
+    border-radius: 15px;
+    border: 1px solid var(--sick);
+    margin: 5px;
+    padding: 15px;
+}
+
+.damaged-bee > div > img {
+    width: 120px;
+}
+
 .hive {
     display: flex;
     border-radius: 15px;
     margin: 5px;
     padding: 5px;
-}
-
-.healthy {
-    color: #2ECC71;
-}
-
-.warning1 {
-    color: #F1C40F;
-}
-
-.warning2 {
-    color: #F1C40F;
-}
-
-.sick1 {
-    color: #E74C3C;
-}
-
-.sick2 {
-    color: #E74C3C;
-}
-
-.damage {
-    color: #E67E22;
 }
 
 .hit-button {
