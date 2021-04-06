@@ -26,7 +26,7 @@
 
 .bee-stats {
     padding-bottom: 5px;
-    margin-left: 36px;
+    margin-left: 5px;
 }
 
 .bee-stats > span {
@@ -34,7 +34,7 @@
 }
 
 .bee-hp {
-    margin-left: 36px;
+    margin-left: 5px;
 }
 
 .bee-hp > span {
@@ -46,7 +46,7 @@
 }
 
 .bee-damage {
-    margin-left: 36px;
+    margin-left: 5px;
 }
 
 .bee-damage > span {
@@ -58,7 +58,6 @@
 }
 
 .damaged-bee {
-    width: 260px;
     display: flex;
     border-radius: 15px;
     border: 1px solid var(--pale);

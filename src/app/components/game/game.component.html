@@ -47,8 +47,12 @@
 
             <!-- SWARM STATE -->
             <div class="flex-parent">
-                <app-stats-card [data]="hive" scenario="common"></app-stats-card>
-                <app-stats-card *ngIf="damagedBee" [data]="damagedBee" scenario="damaged"></app-stats-card>
+                <div class="flex-child">
+                    <app-stats-card [data]="hive" scenario="common"></app-stats-card>
+                </div>
+                <div class="flex-child" *ngIf="damagedBee">
+                    <app-stats-card [data]="damagedBee" scenario="damaged"></app-stats-card>
+                </div>
             </div>
         
             <!-- HIT BUTTON -->
