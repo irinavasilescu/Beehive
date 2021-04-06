@@ -76,6 +76,14 @@ input:focus {
     color: var(--warning);
 }
 
+.game-over {
+    text-align: center;
+}
+
+.game-over > img {
+    width: 50vw;
+}
+
 footer {
     margin-top: 40px;
     bottom: 0;

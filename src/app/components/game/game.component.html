@@ -22,8 +22,8 @@
 
     <ng-container *ngIf="playerReady">
         <!-- GAME OVER STATE -->
-        <div *ngIf="gameOver" style="text-align: center;">
-            <img src="./assets/game_over.png" style="width: 50vw">
+        <div *ngIf="gameOver" class="game-over">
+            <img src="./assets/game_over.png">
             <br>
             <button class="button" (click)="start()">START AGAIN</button>
         </div>
@@ -36,12 +36,12 @@
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="45" height="45" viewBox="0 0 30 30" style=" fill:#000000;">    <path d="M 15 6 C 10.933075 6 5.4021252 7.0594658 5.3964844 7.0605469 C 5.3964844 7.0605469 5.3945312 7.0605469 5.3945312 7.0605469 C 4.2063097 7.3036573 3.2783178 8.2501084 3.0546875 9.4453125 L 3.0507812 9.4492188 L 1.0839844 20.179688 L 1.0859375 20.181641 C 1.0310045 20.445822 1 20.719532 1 21 C 1 23.209 2.791 25 5 25 C 6.1864022 25 7.2401051 24.47287 7.9726562 23.652344 L 7.9863281 23.660156 L 9.5 22 L 15 22 L 20.5 22 L 22.013672 23.660156 L 22.027344 23.652344 C 22.759895 24.47287 23.813598 25 25 25 C 27.209 25 29 23.209 29 21 C 29 20.719532 28.968996 20.445822 28.914062 20.181641 L 28.916016 20.179688 L 26.949219 9.4492188 L 26.945312 9.4453125 C 26.721565 8.2494809 25.79263 7.303047 24.603516 7.0605469 C 24.602892 7.0604196 24.602187 7.0606737 24.601562 7.0605469 C 24.59692 7.0594658 19.066925 6 15 6 z M 8 12 C 8.552 12 9 12.448 9 13 L 9 14 L 10 14 C 10.552 14 11 14.448 11 15 C 11 15.552 10.552 16 10 16 L 9 16 L 9 17 C 9 17.552 8.552 18 8 18 C 7.448 18 7 17.552 7 17 L 7 16 L 6 16 C 5.448 16 5 15.552 5 15 C 5 14.448 5.448 14 6 14 L 7 14 L 7 13 C 7 12.448 7.448 12 8 12 z M 22 12 C 22.552 12 23 12.448 23 13 C 23 13.552 22.552 14 22 14 C 21.448 14 21 13.552 21 13 C 21 12.448 21.448 12 22 12 z M 20 14 C 20.552 14 21 14.448 21 15 C 21 15.552 20.552 16 20 16 C 19.448 16 19 15.552 19 15 C 19 14.448 19.448 14 20 14 z M 24 14 C 24.552 14 25 14.448 25 15 C 25 15.552 24.552 16 24 16 C 23.448 16 23 15.552 23 15 C 23 14.448 23.448 14 24 14 z M 22 16 C 22.552 16 23 16.448 23 17 C 23 17.552 22.552 18 22 18 C 21.448 18 21 17.552 21 17 C 21 16.448 21.448 16 22 16 z"></path></svg>
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <span style="font-size: 30px; font-weight: 700; margin-left: 10px;"> 
+                    <span style="font-size: 30px; font-weight: 700;"> 
                         {{playerName}} 
-                        <span *ngIf="damagedBee" style="color: var(--sick);">you've just hit a <strong>{{damagedBee.type}}</strong>!</span>
+                        <span *ngIf="damagedBee" class="sick1">you've just hit a <strong>{{damagedBee.type}}</strong>!</span>
                     </span>
                     <br>
-                    <span *ngIf="damagedBee" style="color: var(--sick);"><strong>{{bees.length}}</strong> bees left</span>
+                    <span *ngIf="damagedBee" class="sick1"><strong>{{bees.length}}</strong> bees left</span>
                 </div>
             </div>
 
