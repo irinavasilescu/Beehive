@@ -16,6 +16,8 @@ export class GameComponent implements OnInit {
     playerName: any;
     playerReady = false;
 
+    loadedSavedGame: boolean = false;
+
     constructor(
         private readonly valuesService: ValuesService
     ) { }
@@ -28,7 +30,9 @@ export class GameComponent implements OnInit {
         this.initVariables();
         this.initBeesState();
         this.loadPreviousGame();
-        this.calculateHiveStats();
+        if (!this.loadedSavedGame) { 
+            this.calculateHiveStats(); 
+        }
     }
 
     initBeesState() {
@@ -63,15 +67,14 @@ export class GameComponent implements OnInit {
     damageRandomBee() {
         const selectedBeeIndex = this.pickRandomBee();
         if (this.bees[selectedBeeIndex] && this.bees[selectedBeeIndex].hp) {
-            const dryRunDamage = this.bees[selectedBeeIndex].hp - this.bees[selectedBeeIndex].damage;
-            if (dryRunDamage > 0) {
-                this.registerDamage(this.bees[selectedBeeIndex], dryRunDamage);
-                this.filterDeadBees();
-                localStorage.setItem(selectedBeeIndex.toString(), dryRunDamage.toString());
-                this.checkGameOver();
-            } else {
-                this.bees[selectedBeeIndex].hp = 0;
+            let dryRunDamage = this.bees[selectedBeeIndex].hp - this.bees[selectedBeeIndex].damage;
+            if (dryRunDamage < 0) {
+                dryRunDamage = 0;
             }
+            this.registerDamage(this.bees[selectedBeeIndex], dryRunDamage);
+            this.checkGameOver();
+            this.filterDeadBees();
+            localStorage.setItem(selectedBeeIndex.toString(), dryRunDamage.toString());
         }
     }
 
@@ -91,10 +94,13 @@ export class GameComponent implements OnInit {
     }
 
     checkGameOver() {
-        const isQueenDead = this.bees.filter(bee => bee.type === this.valuesService.beeTypes.queen)[0].hp === 0;
-        const areAllBeesDead = this.bees.filter(bee => bee.type !== this.valuesService.beeTypes.queen).every(bee => bee.hp === 0)
+        const filteredQueen  = this.bees.filter(bee => bee.type === this.valuesService.beeTypes.queen);
+        const filteredBees   = this.bees.filter(bee => bee.type !== this.valuesService.beeTypes.queen);
+        const isQueenDead    = filteredQueen.length === 0 || filteredQueen[0].hp === 0;
+        const areAllBeesDead = filteredBees.every(bee => bee.hp === 0)
         if (isQueenDead || areAllBeesDead) {
             this.gameOver = true;
+            localStorage.clear();
         }
     }
 
@@ -155,7 +161,10 @@ export class GameComponent implements OnInit {
                 loaded = true;
             }
         });
+        this.loadedSavedGame = loaded;
         if (loaded) {
+            this.calculateHiveStats();
+            this.filterDeadBees();
             this.setStatuses();
         }
     }

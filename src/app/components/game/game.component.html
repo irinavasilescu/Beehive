@@ -21,6 +21,11 @@
     </ng-container>
 
     <ng-container *ngIf="playerReady">
+
+        <ng-container *ngIf="loadedSavedGame">
+            Loaded saved game
+        </ng-container>
+
         <!-- GAME OVER STATE -->
         <div *ngIf="gameOver" class="game-over">
             <img src="./assets/game_over.png">
