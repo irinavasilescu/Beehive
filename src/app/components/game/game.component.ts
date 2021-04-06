@@ -18,12 +18,19 @@ export class GameComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        this.start();
+    }
+
+    start() {
         this.initBeesState();
-        this.pickRandomBee();
         this.calculateHiveStats();
     }
 
     initBeesState() {
+        this.gameOver = false;
+        this.bees = [];
+        this.damagedBee = undefined;
+        this.hive = {};
         this.valuesService.beeTypesArray.forEach(beeType => {
             this.bees.push(
                 ...Array.from(
@@ -63,9 +70,9 @@ export class GameComponent implements OnInit {
 
     checkGameOver() {
         if (this.bees.filter(bee => bee.type === this.valuesService.beeTypes.queen)[0].hp === 0) {
-            alert('GAME OVER');
+            this.gameOver = true;
         } else if (this.bees.filter(bee => bee.type !== this.valuesService.beeTypes.queen).every(bee => bee.hp === 0)) {
-            alert('GAME OVER');
+            this.gameOver = true;
         }
     }
 
