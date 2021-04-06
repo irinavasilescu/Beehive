@@ -12,6 +12,9 @@ export class GameComponent implements OnInit {
     gameOver = false;
     damagedBee: any;
     hive: any;
+    
+    playerName: any;
+    playerReady = false;
 
     constructor(
         private readonly valuesService: ValuesService
@@ -118,5 +121,9 @@ export class GameComponent implements OnInit {
             total: this.valuesService.beeTypesArray.map(beeType => this.valuesService.hive[beeType].hp * this.valuesService.hive[beeType].total).reduce((acc, val) => acc + val),
             status: this.hive.status ?? 'healthy'
         }
+    }
+
+    setPlayerReady() {
+        this.playerReady = true;
     }
 }
