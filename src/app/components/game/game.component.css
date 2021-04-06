@@ -3,6 +3,7 @@
     --warning: #F1C40F;
     --sick: #E74C3C;
     --damage: #E67E22;
+    --pale: #ffded4;
 }
 
 .healthy {
@@ -102,9 +103,10 @@
 .damaged-bee {
     display: flex;
     border-radius: 15px;
-    border: 1px solid var(--sick);
+    border: 1px solid var(--pale);
     margin: 5px;
     padding: 15px;
+    background-color: var(--pale);
 }
 
 .damaged-bee > div > img {

@@ -115,8 +115,8 @@ export class GameComponent implements OnInit {
     calculateHiveStats() {
         this.hive = {
             hp: this.bees.map(bee => bee.hp).reduce((acc, val) => acc + val),
-            total: this.valuesService.beeTypesArray.map(beeType => this.valuesService.hive[beeType].hp * this.valuesService.hive[beeType].total).reduce((acc, val) => acc + val)
+            total: this.valuesService.beeTypesArray.map(beeType => this.valuesService.hive[beeType].hp * this.valuesService.hive[beeType].total).reduce((acc, val) => acc + val),
+            status: this.hive.status ?? 'healthy'
         }
-        console.log('HIVE STATS', this.hive);
     }
 }
