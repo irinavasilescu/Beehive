@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+    --healthy: #2ECC71;
+    --warning: #F1C40F;
+    --sick: #E74C3C;
+    --damage: #E67E22;
+    --pale: #ffded4;
+}
+
+.healthy {
+    color: var(--healthy);
+}
+
+.warning1 {
+    color: var(--warning);
+}
+
+.warning2 {
+    color: var(--warning);
+}
+
+.sick1 {
+    color: var(--sick);
+}
+
+.sick2 {
+    color: var(--sick);
+}
+
+.damage {
+    color: var(--damage);
+}
