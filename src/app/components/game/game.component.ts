@@ -56,17 +56,17 @@ export class GameComponent implements OnInit {
     }
 
     pickRandomBee() {
-        this.filterDeadBees();
         return Math.floor(Math.random() * this.bees.length);
     }
 
     damageRandomBee() {
-        this.checkGameOver();
         const selectedBeeIndex = this.pickRandomBee();
         if (this.bees[selectedBeeIndex] && this.bees[selectedBeeIndex].hp) {
             const dryRunDamage = this.bees[selectedBeeIndex].hp - this.bees[selectedBeeIndex].damage;
             if (dryRunDamage > 0) {
-                this.registerDamage(this.bees[selectedBeeIndex], dryRunDamage)
+                this.registerDamage(this.bees[selectedBeeIndex], dryRunDamage);
+                this.filterDeadBees();
+                this.checkGameOver();
             } else {
                 this.bees[selectedBeeIndex].hp = 0;
             }

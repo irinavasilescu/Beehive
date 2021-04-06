@@ -18,6 +18,5 @@ export class StatsCardComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.isBee = this.data.type !== undefined;
-		console.log('is bee', this.isBee);
 	}
 }
