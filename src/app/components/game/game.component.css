@@ -29,6 +29,7 @@
     font-size: 18px;
     font-weight: 700;
     margin: 5px;
+    cursor: pointer;
 }
 
 .button:focus {
@@ -54,6 +55,25 @@ input {
 
 input:focus {
     outline: none;
+}
+
+.player-form {
+    text-align: center;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+.player-form > img {
+    width: 200px;
+}
+
+.player-form > .enter-name {
+    font-weight: 500;
+}
+
+.player-form > div > .detail {
+    font-size: 12px;
+    color: var(--warning);
 }
 
 footer {
