@@ -42,4 +42,9 @@ export class ValuesService {
             status: 'healthy'
         }
     }
+
+    scenarios = {
+        common: 'common',
+        damaged: 'damaged'
+    }
 }
