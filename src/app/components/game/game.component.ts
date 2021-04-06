@@ -27,6 +27,7 @@ export class GameComponent implements OnInit {
     start() {
         this.initVariables();
         this.initBeesState();
+        this.loadPreviousGame();
         this.calculateHiveStats();
     }
 
@@ -66,6 +67,7 @@ export class GameComponent implements OnInit {
             if (dryRunDamage > 0) {
                 this.registerDamage(this.bees[selectedBeeIndex], dryRunDamage);
                 this.filterDeadBees();
+                localStorage.setItem(selectedBeeIndex.toString(), dryRunDamage.toString());
                 this.checkGameOver();
             } else {
                 this.bees[selectedBeeIndex].hp = 0;
@@ -142,5 +144,19 @@ export class GameComponent implements OnInit {
 
     setPlayerReady() {
         this.playerReady = true;
-    }    
+    }
+    
+    loadPreviousGame() {
+        let loaded = false;
+        this.bees.forEach((bee, index) => {
+            if (localStorage.getItem(index.toString())) {
+                console.log('I HAVE IT');
+                bee.hp = parseInt(localStorage[index.toString()]);
+                loaded = true;
+            }
+        });
+        if (loaded) {
+            this.setStatuses();
+        }
+    }
 }
