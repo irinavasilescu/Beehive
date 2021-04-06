@@ -13,12 +13,6 @@ export class ValuesService {
         drone: 'drone'
     }
 
-    beeTypesArray = [
-        this.beeTypes.queen,
-        this.beeTypes.worker,
-        this.beeTypes.drone
-    ]
-
     images = {
         queen:  './assets/queen.png',
         worker: './assets/worker.png',
@@ -49,6 +43,8 @@ export class ValuesService {
             status: 'healthy'
         }
     }
+
+    beeTypesArray = Object.keys(this.hive);
 
     scenarios = {
         common: 'common',
