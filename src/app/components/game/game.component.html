@@ -1,9 +1,9 @@
 <div class="game">
-
     <header>
         <img style="width: 100vw;" src="./assets/header.png">
     </header>
 
+    <!-- GAME OVER STATE -->
     <div *ngIf="gameOver">
         GAME OVER!
         <br>
@@ -11,34 +11,35 @@
     </div>
 
     <div *ngIf="!gameOver">
+        <!-- SWARM STATE -->
         <div class="flex-parent">
             <div class="flex-child">
                 <app-stats-card [data]="hive" scenario="common"></app-stats-card>
             </div>
         </div>
     
+        <!-- HIT BUTTON -->
         <div style="text-align: center;">
             <button class="hit-button" (click)="damageRandomBee()">HIT</button>
         </div>
 
+        <!-- DAMAGED BEE -->
         <ng-container *ngIf="damagedBee" >
-
             <div style="text-align: center;">
                 <span style="display: inline-flex;">
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g><path d="M82.41667,14.33333l-10.75,35.83333l-39.41667,-25.08333l17.91667,43l-35.77242,10.34508l35.77242,14.73825l-21.5,32.25l39.41667,-10.75l7.16667,43l21.5,-39.41667l43,17.91667l-21.5,-39.41667l39.41667,-17.91667l-43,-7.16667l25.08333,-39.41667l-43,17.91667z" fill="#ff3d00"></path><path d="M83.86792,46.90583l2.9025,7.25267l4.04917,10.12292l10.06917,-4.1925l11.438,-4.76583l-6.7295,10.57083l-8.72183,13.70267l16.02467,2.66958l8.213,1.37242l-7.31,3.32175l-10.52783,4.78375l5.53625,10.15158l6.86925,12.59542l-14.79558,-6.16692l-8.93683,-3.72308l-4.63683,8.49967l-6.58258,12.06508l-2.0425,-12.26933l-1.9565,-11.73183l-11.47383,3.12825l-11.72108,3.19992l5.57567,-8.3635l7.27058,-10.90767l-12.12242,-4.99517l-7.32792,-3.02075l6.21708,-1.79883l11.57058,-3.34683l-4.62967,-11.11908l-4.76583,-11.438l10.57083,6.7295l11.98625,7.62533l4.08142,-13.60592l1.90633,-6.34608" fill="#ff9e80"></path><path d="M81.48858,78.90858l-13.40525,-10.82525l7.16667,17.91667l-7.16667,10.75l10.75,-3.58333l7.16667,14.33333l3.58333,-17.91667l14.33333,-3.58333l-14.33333,-3.58333l-3.58333,-17.91667z" fill="#fff59d"></path></g></g></svg>
-                    <span style="color: var(--sick); margin-right: 10px; margin-left: 10px;">You've just hit a <strong>{{damagedBee.type}}</strong></span>
+                    <span style="color: var(--sick); margin-right: 10px; margin-left: 10px;">You've just hit a <strong>{{damagedBee.type}}</strong>!</span>
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g><path d="M82.41667,14.33333l-10.75,35.83333l-39.41667,-25.08333l17.91667,43l-35.77242,10.34508l35.77242,14.73825l-21.5,32.25l39.41667,-10.75l7.16667,43l21.5,-39.41667l43,17.91667l-21.5,-39.41667l39.41667,-17.91667l-43,-7.16667l25.08333,-39.41667l-43,17.91667z" fill="#ff3d00"></path><path d="M83.86792,46.90583l2.9025,7.25267l4.04917,10.12292l10.06917,-4.1925l11.438,-4.76583l-6.7295,10.57083l-8.72183,13.70267l16.02467,2.66958l8.213,1.37242l-7.31,3.32175l-10.52783,4.78375l5.53625,10.15158l6.86925,12.59542l-14.79558,-6.16692l-8.93683,-3.72308l-4.63683,8.49967l-6.58258,12.06508l-2.0425,-12.26933l-1.9565,-11.73183l-11.47383,3.12825l-11.72108,3.19992l5.57567,-8.3635l7.27058,-10.90767l-12.12242,-4.99517l-7.32792,-3.02075l6.21708,-1.79883l11.57058,-3.34683l-4.62967,-11.11908l-4.76583,-11.438l10.57083,6.7295l11.98625,7.62533l4.08142,-13.60592l1.90633,-6.34608" fill="#ff9e80"></path><path d="M81.48858,78.90858l-13.40525,-10.82525l7.16667,17.91667l-7.16667,10.75l10.75,-3.58333l7.16667,14.33333l3.58333,-17.91667l14.33333,-3.58333l-14.33333,-3.58333l-3.58333,-17.91667z" fill="#fff59d"></path></g></g></svg>
                 </span>
                 <br>
                 <span style="color: var(--sick);"><strong>{{bees.length}}</strong> bees left</span>
             </div>
-    
             <div style="display: flex; justify-content: center;">
                 <app-stats-card [data]="damagedBee" scenario="damaged"></app-stats-card>
             </div>
-
         </ng-container>
         
+        <!-- ALL BEES -->
         <div class="flex-parent">
             <div *ngFor="let bee of bees" class="flex-child">
                 <app-stats-card [data]="bee" scenario="common"></app-stats-card>
@@ -49,5 +50,4 @@
     <footer>
         <img style="width: 100vw; margin-bottom: -8px;" src="./assets/footer.png">
     </footer>
-    
 </div>
