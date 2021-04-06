@@ -11,7 +11,7 @@ export class GameComponent implements OnInit {
     bees: any = [];
     gameOver = false;
     damagedBee: any;
-    hive: any;
+    hive: any = {};
     
     playerName: any;
     playerReady = false;
@@ -25,15 +25,12 @@ export class GameComponent implements OnInit {
     }
 
     start() {
+        this.initVariables();
         this.initBeesState();
         this.calculateHiveStats();
     }
 
     initBeesState() {
-        this.gameOver = false;
-        this.bees = [];
-        this.damagedBee = undefined;
-        this.hive = {};
         this.valuesService.beeTypesArray.forEach(beeType => {
             this.bees.push(
                 ...Array.from(
@@ -49,6 +46,15 @@ export class GameComponent implements OnInit {
         });
     }
 
+    initVariables() {
+        if (this.gameOver === true) {
+            this.gameOver = false;
+            this.bees = [];
+            this.damagedBee = undefined;
+            this.hive = {};
+        }
+    }
+
     pickRandomBee() {
         this.filterDeadBees();
         return Math.floor(Math.random() * this.bees.length);
@@ -60,15 +66,26 @@ export class GameComponent implements OnInit {
         if (this.bees[selectedBeeIndex] && this.bees[selectedBeeIndex].hp) {
             const dryRunDamage = this.bees[selectedBeeIndex].hp - this.bees[selectedBeeIndex].damage;
             if (dryRunDamage > 0) {
-                this.bees[selectedBeeIndex].hp = dryRunDamage;
-                this.setStatus(this.bees[selectedBeeIndex]);
-                this.setStatus(this.hive);
-                this.damagedBee = this.bees[selectedBeeIndex];
-                this.calculateHiveStats();
+                this.registerDamage(this.bees[selectedBeeIndex], dryRunDamage)
             } else {
                 this.bees[selectedBeeIndex].hp = 0;
             }
         }
+    }
+
+    registerDamage(bee, hp) {
+        bee.hp = hp;
+        this.setStatus(bee);
+        this.calculateHiveStats();
+        this.setStatus(this.hive);
+        this.damagedBee = bee;
+    }
+
+    setStatuses() {
+        this.bees.forEach(bee => {
+            this.setStatus(bee);
+        });
+        this.setStatus(this.hive);
     }
 
     checkGameOver() {
