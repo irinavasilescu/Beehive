@@ -19,26 +19,33 @@ export class ValuesService {
         this.beeTypes.drone
     ]
 
+    images = {
+        queen:  './assets/queen.png',
+        worker: './assets/worker.png',
+        drone:  './assets/drone.png',
+        hive:   './assets/hive.png'
+    }
+
     hive = {
         [this.beeTypes.queen]: {
             total: 1,
             hp: 100,
             damage: 8,
-            img: './assets/queen.png',
+            img: this.images.queen,
             status: 'healthy'
         },
         [this.beeTypes.worker]: {
             total: 5,
             hp: 75,
             damage: 10,
-            img: './assets/worker.png',
+            img: this.images.worker,
             status: 'healthy'
         },
         [this.beeTypes.drone]: {
             total: 8,
             hp: 50,
             damage: 12,
-            img: './assets/drone.png',
+            img: this.images.drone,
             status: 'healthy'
         }
     }
