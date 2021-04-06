@@ -49,3 +49,20 @@ input {
 input:focus {
     outline: none;
 }
+
+footer {
+    bottom: 0;
+}
+
+footer > img {
+    width: 100vw;
+    margin-bottom: -8px;
+}
+
+header {
+    top: 0;
+}
+
+header > img {
+    width: 100vw;
+}
