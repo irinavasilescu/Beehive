@@ -72,9 +72,9 @@ export class GameComponent implements OnInit {
     }
 
     checkGameOver() {
-        if (this.bees.filter(bee => bee.type === this.valuesService.beeTypes.queen)[0].hp === 0) {
-            this.gameOver = true;
-        } else if (this.bees.filter(bee => bee.type !== this.valuesService.beeTypes.queen).every(bee => bee.hp === 0)) {
+        const isQueenDead = this.bees.filter(bee => bee.type === this.valuesService.beeTypes.queen)[0].hp === 0;
+        const areAllBeesDead = this.bees.filter(bee => bee.type !== this.valuesService.beeTypes.queen).every(bee => bee.hp === 0)
+        if (isQueenDead || areAllBeesDead) {
             this.gameOver = true;
         }
     }
@@ -125,5 +125,5 @@ export class GameComponent implements OnInit {
 
     setPlayerReady() {
         this.playerReady = true;
-    }
+    }    
 }
