@@ -47,14 +47,17 @@ export class GameComponent implements OnInit {
     damageRandomBee() {
         this.checkGameOver();
         const selectedBeeIndex = this.pickRandomBee();
-        const dryRunDamage = this.bees[selectedBeeIndex].hp - this.bees[selectedBeeIndex].damage;
-        if (dryRunDamage > 0) {
-            this.bees[selectedBeeIndex].hp = dryRunDamage;
-            this.setStatus(this.bees[selectedBeeIndex]);
-            this.damagedBee = this.bees[selectedBeeIndex];
-            this.calculateHiveStats();
-        } else {
-            this.bees[selectedBeeIndex].hp = 0;
+        if (this.bees[selectedBeeIndex] && this.bees[selectedBeeIndex].hp) {
+            const dryRunDamage = this.bees[selectedBeeIndex].hp - this.bees[selectedBeeIndex].damage;
+            if (dryRunDamage > 0) {
+                this.bees[selectedBeeIndex].hp = dryRunDamage;
+                this.setStatus(this.bees[selectedBeeIndex]);
+                this.setStatus(this.hive);
+                this.damagedBee = this.bees[selectedBeeIndex];
+                this.calculateHiveStats();
+            } else {
+                this.bees[selectedBeeIndex].hp = 0;
+            }
         }
     }
 
@@ -66,19 +69,36 @@ export class GameComponent implements OnInit {
         }
     }
 
-    setStatus(bee) {
-        // healthy, warning1, warning2, sick1, sick2
-        if (bee.hp >= this.valuesService.hive[bee.type].hp * 4/5) {
-            bee.status = 'healthy';
-        } else if (this.valuesService.hive[bee.type].hp * 4/5 >= bee.hp && bee.hp >= this.valuesService.hive[bee.type].hp * 3/5) {
-            bee.status = 'warning1';
-        } else if (this.valuesService.hive[bee.type].hp * 3/5 >= bee.hp && bee.hp >= this.valuesService.hive[bee.type].hp * 2/5) {
-            bee.status = 'warning2';
-        } else if (this.valuesService.hive[bee.type].hp * 2/5 >= bee.hp && bee.hp >= this.valuesService.hive[bee.type].hp * 1/5) {
-            bee.status = 'sick1';
+    /**
+     * Sets health status
+     * @param object bee or hive
+     */
+    setStatus(object) {
+        if (object.type) {
+            if (object.hp >= this.valuesService.hive[object.type].hp * 4/5) {
+                object.status = 'healthy';
+            } else if (this.valuesService.hive[object.type].hp * 4/5 >= object.hp && object.hp >= this.valuesService.hive[object.type].hp * 3/5) {
+                object.status = 'warning1';
+            } else if (this.valuesService.hive[object.type].hp * 3/5 >= object.hp && object.hp >= this.valuesService.hive[object.type].hp * 2/5) {
+                object.status = 'warning2';
+            } else if (this.valuesService.hive[object.type].hp * 2/5 >= object.hp && object.hp >= this.valuesService.hive[object.type].hp * 1/5) {
+                object.status = 'sick1';
+            } else {
+                object.status = 'sick2';
+            }
         } else {
-            bee.status = 'sick2';
-        }
+            if (object.hp >= this.hive.total * 4/5) {
+                object.status = 'healthy';
+            } else if (this.hive.total * 4/5 >= object.hp && object.hp >= this.hive.total * 3/5) {
+                object.status = 'warning1';
+            } else if (this.hive.total * 3/5 >= object.hp && object.hp >= this.hive.total * 2/5) {
+                object.status = 'warning2';
+            } else if (this.hive.total * 2/5 >= object.hp && object.hp >= this.hive.total * 1/5) {
+                object.status = 'sick1';
+            } else {
+                object.status = 'sick2';
+            }
+        }   
     }
 
     filterDeadBees() {
