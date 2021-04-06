@@ -84,6 +84,16 @@ input:focus {
     width: 50vw;
 }
 
+.player-details {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.player-details > .player-action {
+    font-size: 30px;
+    font-weight: 700
+}
+
 footer {
     margin-top: 40px;
     bottom: 0;
