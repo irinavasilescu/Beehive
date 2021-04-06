@@ -10,6 +10,7 @@ export class GameComponent implements OnInit {
 
     bees: any = [];
     gameOver = false;
+    damagedBee: any;
 
     constructor(
         private readonly valuesService: ValuesService
@@ -48,6 +49,7 @@ export class GameComponent implements OnInit {
         if (dryRunDamage > 0) {
             this.bees[selectedBeeIndex].hp = dryRunDamage;
             this.setStatus(this.bees[selectedBeeIndex]);
+            this.damagedBee = this.bees[selectedBeeIndex];
         } else {
             this.bees[selectedBeeIndex].hp = 0;
         }
