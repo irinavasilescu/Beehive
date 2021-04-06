@@ -11,6 +11,7 @@ export class GameComponent implements OnInit {
     bees: any = [];
     gameOver = false;
     damagedBee: any;
+    hive: any;
 
     constructor(
         private readonly valuesService: ValuesService
@@ -19,6 +20,7 @@ export class GameComponent implements OnInit {
     ngOnInit(): void {
         this.initBeesState();
         this.pickRandomBee();
+        this.calculateHiveStats();
     }
 
     initBeesState() {
@@ -50,6 +52,7 @@ export class GameComponent implements OnInit {
             this.bees[selectedBeeIndex].hp = dryRunDamage;
             this.setStatus(this.bees[selectedBeeIndex]);
             this.damagedBee = this.bees[selectedBeeIndex];
+            this.calculateHiveStats();
         } else {
             this.bees[selectedBeeIndex].hp = 0;
         }
@@ -80,5 +83,13 @@ export class GameComponent implements OnInit {
 
     filterDeadBees() {
         this.bees = this.bees.filter(bee => bee && bee.hp && bee.hp > 0);
+    }
+
+    calculateHiveStats() {
+        this.hive = {
+            hp: this.bees.map(bee => bee.hp).reduce((acc, val) => acc + val),
+            total: this.valuesService.beeTypesArray.map(beeType => this.valuesService.hive[beeType].hp * this.valuesService.hive[beeType].total).reduce((acc, val) => acc + val)
+        }
+        console.log('HIVE STATS', this.hive);
     }
 }
