@@ -4,7 +4,7 @@
     </header>
 
     <ng-container *ngIf="!playerReady">
-        <div style="text-align: center">
+        <div style="text-align: center; margin-top: 5vh; margin-bottom: 5vh;">
             <img src="./assets/bee.png" width="200px">
             <div>
                 Enter you name:
@@ -13,7 +13,9 @@
                 <input type="text" [(ngModel)]="playerName">
             </div>
             <div>
-                <button *ngIf="playerName" class="button" (click)="setPlayerReady()">START GAME</button>
+                <button class="button" (click)="setPlayerReady()" [disabled]="playerName === undefined" style="cursor: pointer;">START GAME</button>
+                <br>
+                <span style="font-size: 12px; color: var(--warning)">* You must enter a name to start playing</span>
             </div>
         </div>
     </ng-container>
