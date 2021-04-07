@@ -76,8 +76,12 @@ input:focus {
 
 .player-form {
     text-align: center;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
 }
 
 .player-form > img {
@@ -95,6 +99,12 @@ input:focus {
 
 .game-over {
     text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
 }
 
 .game-over > img {
@@ -121,6 +131,18 @@ footer > img {
     margin-bottom: -8px;
 }
 
+.footer-social {
+    background-color: var(--healthy);
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.icon-social {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
 header {
     top: 0;
     margin-bottom: 10px;
@@ -128,4 +150,9 @@ header {
 
 header > img {
     width: 100vw;
+}
+
+.game {
+    position: relative;
+    min-height: 100vh;
 }
