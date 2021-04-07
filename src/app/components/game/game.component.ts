@@ -65,8 +65,9 @@ export class GameComponent implements OnInit {
     }
 
     pickRandomBee() {
-        const limit = this.bees.filter(bee => bee && bee.hp && bee.hp > 0).length;
-        return Math.floor(Math.random() * limit);
+        const availableIndexes = this.bees.map((bee, index) => bee.hp > 0 ? index : null).filter(index => index !== null);
+        const limit = availableIndexes.length;
+        return availableIndexes[Math.floor(Math.random() * limit)];
     }
 
     damageRandomBee() {
