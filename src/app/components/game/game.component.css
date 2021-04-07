@@ -17,13 +17,12 @@
     border: 1px solid var(--warning);
 }
 
-.button {
+button {
     padding-left: 35px;
     padding-right: 35px;
     padding-top: 13px;
     padding-bottom: 13px;
     border: 0;
-    background-color: var(--warning);
     border-radius: 10px;
     color: white;
     font-size: 18px;
@@ -32,7 +31,7 @@
     cursor: pointer;
 }
 
-.button:focus {
+button:focus {
     outline: none;
 }
 
@@ -40,6 +39,24 @@
     text-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.hit > button {
+    background-color: var(--warning);
+}
+
+.start > button {
+    background-color: var(--warning);
+}
+
+.restart {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.restart > button {
+    background-color: var(--healthy);
 }
 
 input {

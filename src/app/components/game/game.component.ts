@@ -54,12 +54,10 @@ export class GameComponent implements OnInit {
     }
 
     initVariables() {
-        if (this.gameOver === true) {
-            this.gameOver = false;
-            this.bees = [];
-            this.damagedBee = undefined;
-            this.hive = {};
-        }
+        this.gameOver = false;
+        this.bees = [];
+        this.damagedBee = undefined;
+        this.hive = {};
     }
 
     initHiveState() {

@@ -12,8 +12,8 @@
             <div>
                 <input type="text" [(ngModel)]="playerName">
             </div>
-            <div>
-                <button class="button" (click)="setPlayerReady()" [disabled]="playerName === undefined">START GAME</button>
+            <div class="start">
+                <button (click)="setPlayerReady()" [disabled]="playerName === undefined">START GAME</button>
                 <br>
                 <span class="detail">* You must enter a name to start playing</span>
             </div>
@@ -26,7 +26,9 @@
         <div *ngIf="gameOver" class="game-over">
             <img [src]="valuesService.images.gameOver">
             <br>
-            <button class="button" (click)="startAgain()">START AGAIN</button>
+            <div class="start">
+                <button (click)="startAgain()">START AGAIN</button>
+            </div>
         </div>
 
         <div *ngIf="!gameOver">
@@ -58,7 +60,7 @@
         
             <!-- HIT BUTTON -->
             <div class="hit">
-                <button class="button" (click)="damageRandomBee()"> HIT </button>
+                <button (click)="damageRandomBee()"> HIT </button>
             </div>
             
             <!-- ALL BEES -->
@@ -66,6 +68,11 @@
                 <div *ngFor="let bee of bees" class="flex-child">
                     <app-stats-card *ngIf="bee.hp > 0" [data]="bee" scenario="common"></app-stats-card>
                 </div>
+            </div>
+
+            <!-- RESTART BUTTON -->
+            <div class="restart">
+                <button (click)="startAgain()"> RESTART GAME </button>
             </div>
         </div>
     </ng-container>
