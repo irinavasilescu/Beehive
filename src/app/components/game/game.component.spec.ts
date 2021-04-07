@@ -114,4 +114,57 @@ describe('GameComponent', () => {
             expect(component.gameOver).toBeTrue();
         })
     });
+
+    describe('setStatus method', () => {
+        it('should set healthy for bee', () => {
+            const bee = { hp: 65,  type: valuesService.beeTypes.worker, status: valuesService.statuses.healthy };
+            component.setStatus(bee);
+            expect(bee.status).toEqual(valuesService.statuses.healthy);
+        });
+        it('should set warning1 for bee', () => {
+            const bee = { hp: 38,  type: valuesService.beeTypes.drone, status: valuesService.statuses.healthy };
+            component.setStatus(bee);
+            expect(bee.status).toEqual(valuesService.statuses.warning1);
+        });
+        it('should set warning2 for bee', () => {
+            const bee = { hp: 52,  type: valuesService.beeTypes.queen, status: valuesService.statuses.healthy };
+            component.setStatus(bee);
+            expect(bee.status).toEqual(valuesService.statuses.warning2);
+        });
+        it('should set sick1 for bee', () => {
+            const bee = { hp: 25,  type: valuesService.beeTypes.worker, status: valuesService.statuses.healthy };
+            component.setStatus(bee);
+            expect(bee.status).toEqual(valuesService.statuses.sick1);
+        });
+        it('should set sick2 for bee', () => {
+            const bee = { hp: 2,  type: valuesService.beeTypes.drone, status: valuesService.statuses.healthy };
+            component.setStatus(bee);
+            expect(bee.status).toEqual(valuesService.statuses.sick2);
+        });
+        it('should set healthy for hive', () => {
+            const hive = { hp: 803,  total: 875, status: valuesService.statuses.healthy };
+            component.setStatus(hive);
+            expect(hive.status).toEqual(valuesService.statuses.healthy);
+        });
+        it('should set warning1 for hive', () => {
+            const hive = { hp: 681,  total: 875, status: valuesService.statuses.healthy };
+            component.setStatus(hive);
+            expect(hive.status).toEqual(valuesService.statuses.warning1);
+        });
+        it('should set warning2 for hive', () => {
+            const hive = { hp: 473,  total: 875, status: valuesService.statuses.healthy };
+            component.setStatus(hive);
+            expect(hive.status).toEqual(valuesService.statuses.warning2);
+        });
+        it('should set sick1 for hive', () => {
+            const hive = { hp: 237,  total: 875, status: valuesService.statuses.healthy };
+            component.setStatus(hive);
+            expect(hive.status).toEqual(valuesService.statuses.sick1);
+        });
+        it('should set sick2 for hive', () => {
+            const hive = { hp: 102,  total: 875, status: valuesService.statuses.healthy };
+            component.setStatus(hive);
+            expect(hive.status).toEqual(valuesService.statuses.sick2);
+        });
+    });
 });
