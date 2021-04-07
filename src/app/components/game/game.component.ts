@@ -17,7 +17,7 @@ export class GameComponent implements OnInit {
     playerReady = false;
 
     constructor(
-        private readonly valuesService: ValuesService
+        public valuesService: ValuesService
     ) { }
 
     ngOnInit(): void {

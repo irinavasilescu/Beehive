@@ -1,7 +1,7 @@
 <div class="bee" [ngClass]="{'damaged-bee': scenario === valuesService.scenarios.damaged}">
     <div>
         <img *ngIf="isBee" [src]="data.img">
-        <img *ngIf="!isBee" src="./assets/hive.png">
+        <img *ngIf="!isBee" [src]="valuesService.images.hive">
     </div>
     <div class="bee-info">
         <div class="bee-type">

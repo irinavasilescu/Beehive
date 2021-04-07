@@ -27,10 +27,14 @@ export class ValuesService {
     }
 
     images = {
-        queen:  './assets/queen.png',
-        worker: './assets/worker.png',
-        drone:  './assets/drone.png',
-        hive:   './assets/hive.png'
+        queen:    './assets/queen.png',
+        worker:   './assets/worker.png',
+        drone:    './assets/drone.png',
+        hive:     './assets/hive.png',
+        bee:      './assets/bee.png',
+        gameOver: './assets/game_over.png',
+        header:   './assets/header.png',
+        footer:   './assets/footer.png'
     }
 
     hive = {

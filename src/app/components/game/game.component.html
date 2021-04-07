@@ -1,11 +1,11 @@
 <div>
     <header>
-        <img src="./assets/header.png">
+        <img [src]="valuesService.images.header">
     </header>
 
     <ng-container *ngIf="!playerReady">
         <div class="player-form">
-            <img src="./assets/bee.png">
+            <img [src]="valuesService.images.bee">
             <div class="enter-name">
                 Enter you name:
             </div>
@@ -24,7 +24,7 @@
 
         <!-- GAME OVER STATE -->
         <div *ngIf="gameOver" class="game-over">
-            <img src="./assets/game_over.png">
+            <img [src]="valuesService.images.gameOver">
             <br>
             <button class="button" (click)="startAgain()">START AGAIN</button>
         </div>
@@ -71,6 +71,6 @@
     </ng-container>
 
     <footer>
-        <img src="./assets/footer.png">
+        <img [src]="valuesService.images.footer">
     </footer>
 </div>
