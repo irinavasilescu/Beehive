@@ -6,15 +6,12 @@ import { ValuesService } from './../../services/values.service';
 describe('StatsCardComponent', () => {
     let component: StatsCardComponent;
     let fixture: ComponentFixture<StatsCardComponent>;
-
     let valuesService;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ StatsCardComponent ],
-            providers: [
-                ValuesService
-            ]
+            providers: [ ValuesService ]
         }).compileComponents();
     }));
 
