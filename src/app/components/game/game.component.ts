@@ -80,22 +80,25 @@ export class GameComponent implements OnInit {
     }
 
     damageRandomBee() {
+        let damage, dryRunHp;
         const selectedBeeIndex = this.pickRandomBee();
         if (this.bees[selectedBeeIndex] && this.bees[selectedBeeIndex].hp) {
-            let dryRunHp = this.bees[selectedBeeIndex].hp - this.bees[selectedBeeIndex].damage;
+            damage = this.bees[selectedBeeIndex].damage;
+            dryRunHp = this.bees[selectedBeeIndex].hp - damage;
             if (dryRunHp <= 0) {
+                damage = this.bees[selectedBeeIndex].hp;
                 dryRunHp = 0;
                 this.checkGameOver();
             }
-            this.registerDamage(this.bees[selectedBeeIndex], dryRunHp);
+            this.registerDamage(this.bees[selectedBeeIndex], dryRunHp, damage);
             localStorage.setItem(selectedBeeIndex.toString(), dryRunHp.toString());
         }
     }
 
-    registerDamage(bee, hp) {
+    registerDamage(bee, hp, damage) {
         bee.hp = hp;
         this.setStatus(bee);
-        this.calculateHiveStats();  // poate ar trebui cu minus aici (prea mult for la fiecare hit)
+        this.hive.hp -= damage;
         this.setStatus(this.hive);
         this.damagedBee = bee;
     }
@@ -149,7 +152,7 @@ export class GameComponent implements OnInit {
             }
         });
         if (loaded) {
-            this.calculateHiveStats();  // trebuie sa ramana doar aici asta
+            this.calculateHiveStats();
             this.setStatuses();
         }
     }
