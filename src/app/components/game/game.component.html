@@ -62,7 +62,14 @@
         
             <!-- HIT BUTTON -->
             <div class="hit">
-                <button class="button" (click)="damageRandomBee()">HIT</button>
+                <button class="button" (click)="damageRandomBee()" [disabled]="isHitDisabled">
+                    <ng-container *ngIf="isHitDisabled">
+                        Loading...
+                    </ng-container>
+                    <ng-container *ngIf="!isHitDisabled">
+                        HIT
+                    </ng-container>
+                </button>
             </div>
             
             <!-- ALL BEES -->

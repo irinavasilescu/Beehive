@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ValuesService } from './../../services/values.service';
+import { timer, Subject } from 'rxjs';
+import { takeUntil } from'rxjs/operators'
 
 @Component({
     selector: 'app-game',
     templateUrl: './game.component.html',
     styleUrls: ['./game.component.css']
 })
-export class GameComponent implements OnInit {
+export class GameComponent implements OnInit, OnDestroy {
 
     bees: any = [];
     gameOver = false;
@@ -16,7 +18,10 @@ export class GameComponent implements OnInit {
     playerName: any;
     playerReady = false;
 
-    loadedSavedGame: boolean = false;
+    loadedSavedGame = false;
+    isHitDisabled = false;
+
+    onDestroy$: Subject<void> = new Subject<void>();
 
     constructor(
         private readonly valuesService: ValuesService
@@ -24,6 +29,11 @@ export class GameComponent implements OnInit {
 
     ngOnInit(): void {
         this.start();
+    }
+
+    ngOnDestroy() {
+        this.onDestroy$.next();
+        this.onDestroy$.complete();
     }
 
     start() {
@@ -65,6 +75,9 @@ export class GameComponent implements OnInit {
     }
 
     damageRandomBee() {
+        this.isHitDisabled = true;
+        const source = timer(1500);
+        
         const selectedBeeIndex = this.pickRandomBee();
         if (this.bees[selectedBeeIndex] && this.bees[selectedBeeIndex].hp) {
             let dryRunDamage = this.bees[selectedBeeIndex].hp - this.bees[selectedBeeIndex].damage;
@@ -76,6 +89,8 @@ export class GameComponent implements OnInit {
             this.filterDeadBees();
             localStorage.setItem(selectedBeeIndex.toString(), dryRunDamage.toString());
         }
+
+        source.pipe(takeUntil(this.onDestroy$)).subscribe(() => this.isHitDisabled = false);
     }
 
     registerDamage(bee, hp) {
