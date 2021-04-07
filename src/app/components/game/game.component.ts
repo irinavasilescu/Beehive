@@ -1,14 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ValuesService } from './../../services/values.service';
-import { timer, Subject } from 'rxjs';
-import { takeUntil } from'rxjs/operators'
 
 @Component({
     selector: 'app-game',
     templateUrl: './game.component.html',
     styleUrls: ['./game.component.css']
 })
-export class GameComponent implements OnInit, OnDestroy {
+export class GameComponent implements OnInit {
 
     bees: any = [];
     gameOver = false;
@@ -18,22 +16,12 @@ export class GameComponent implements OnInit, OnDestroy {
     playerName: any;
     playerReady = false;
 
-    loadedSavedGame = false;
-    isHitDisabled = false;
-
-    onDestroy$: Subject<void> = new Subject<void>();
-
     constructor(
         private readonly valuesService: ValuesService
     ) { }
 
     ngOnInit(): void {
         this.start();
-    }
-
-    ngOnDestroy() {
-        this.onDestroy$.next();
-        this.onDestroy$.complete();
     }
 
     start() {
@@ -82,9 +70,6 @@ export class GameComponent implements OnInit, OnDestroy {
     }
 
     damageRandomBee() {
-        this.isHitDisabled = true;
-        const source = timer(1500);
-        
         const selectedBeeIndex = this.pickRandomBee();
         if (this.bees[selectedBeeIndex] && this.bees[selectedBeeIndex].hp) {
             let dryRunDamage = this.bees[selectedBeeIndex].hp - this.bees[selectedBeeIndex].damage;
@@ -95,8 +80,6 @@ export class GameComponent implements OnInit, OnDestroy {
             this.checkGameOver();
             localStorage.setItem(selectedBeeIndex.toString(), dryRunDamage.toString());
         }
-
-        source.pipe(takeUntil(this.onDestroy$)).subscribe(() => this.isHitDisabled = false);
     }
 
     registerDamage(bee, hp) {
@@ -169,12 +152,10 @@ export class GameComponent implements OnInit, OnDestroy {
         let loaded = false;
         this.bees.forEach((bee, index) => {
             if (localStorage.getItem(index.toString())) {
-                console.log('I HAVE IT');
                 bee.hp = parseInt(localStorage[index.toString()]);
                 loaded = true;
             }
         });
-        this.loadedSavedGame = loaded;
         if (loaded) {
             this.calculateHiveStats();
             this.setStatuses();
