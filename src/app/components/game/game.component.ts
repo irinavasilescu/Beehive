@@ -36,7 +36,6 @@ export class GameComponent implements OnInit {
         this.start();
     }
 
-    // Poate mai simplu
     initBeesState() {
         this.valuesService.beeTypesArray.forEach(beeType => {
             this.bees.push(
