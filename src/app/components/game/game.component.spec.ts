@@ -44,5 +44,36 @@ describe('GameComponent', () => {
             let containsDrone = component.bees.find(bee => bee.type === valuesService.beeTypes.drone) !== undefined;
             expect(containsDrone).toBeTruthy();
         });
-    })
+    });
+
+    describe('initVariables method', () => {
+        it('should initialize variables', () => {
+            component.initVariables();
+            fixture.detectChanges();
+            expect(component.gameOver).toBeFalse();
+            expect(component.bees).toEqual([]);
+            expect(component.damagedBee).toBeUndefined();
+            expect(component.hive).toEqual({});
+        })
+    });
+
+    describe('initHiveState method', () => {
+        it('should initialize hive details', () => {
+            component.initHiveState();
+            fixture.detectChanges();
+            expect(component.hive.hp).toBeDefined();
+            expect(component.hive.total).toBeDefined();
+            expect(component.hive.status).toEqual(valuesService.statuses.healthy);
+        });
+    });
+
+    describe('pickRandomBee method', () => {
+        it('should return valid index', () => {
+            component.bees = [ {hp: 75}, {hp: 100}, {hp: 50}, {hp: 0}, {hp: 75}, {hp: 50}, {hp: 0}, {hp: 100} ]
+            let generatedIndex = component.pickRandomBee();
+            fixture.detectChanges();
+            let isValidIndex = new Set([0, 1, 2, 4, 5, 7]).has(generatedIndex);
+            expect(isValidIndex).toBeTrue();
+        });
+    });
 });
