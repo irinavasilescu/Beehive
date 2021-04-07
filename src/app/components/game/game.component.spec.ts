@@ -88,6 +88,30 @@ describe('GameComponent', () => {
         it('should write to local storage', () => {
             component.damageRandomBee();
             expect(Object.keys(localStorage).length).toBeGreaterThan(0);
+            localStorage.clear();
         });
-    })
+    });
+
+    describe('checkGameOver method', () => {
+        it('should be over if queen is dead', () => {
+            component.bees = [
+                { hp: 0,  type: valuesService.beeTypes.queen  },
+                { hp: 75, type: valuesService.beeTypes.worker },
+                { hp: 75, type: valuesService.beeTypes.worker },
+                { hp: 50, type: valuesService.beeTypes.drone  }
+            ];
+            component.checkGameOver();
+            expect(component.gameOver).toBeTrue();
+        });
+        it('should be over if bees are dead', () => {
+            component.bees = [
+                { hp: 84, type: valuesService.beeTypes.queen  },
+                { hp: 0,  type: valuesService.beeTypes.worker },
+                { hp: 0,  type: valuesService.beeTypes.worker },
+                { hp: 0,  type: valuesService.beeTypes.drone  }
+            ];
+            component.checkGameOver();
+            expect(component.gameOver).toBeTrue();
+        })
+    });
 });
