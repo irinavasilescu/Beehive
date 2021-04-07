@@ -190,4 +190,19 @@ describe('GameComponent', () => {
             expect(hive.status).toEqual(valuesService.statuses.sick2);
         });
     });
+
+    describe('calculateHiveStats method', () => {
+        it('should set hive hp', () => {
+            component.bees = [ {hp: 45}, {hp: 75}, {hp: 68}, {hp: 92}, {hp: 12}, {hp: 31}, {hp: 73}, {hp: 22} ];
+            component.calculateHiveStats();
+            expect(component.hive.hp).toEqual(418);
+        })
+    });
+
+    describe('setPlayerReady method', () => {
+        it('should set playerReady to true', () => {
+            component.setPlayerReady();
+            expect(component.playerReady).toBeTrue();
+        })
+    })
 });
