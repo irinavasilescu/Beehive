@@ -31,6 +31,11 @@ export class GameComponent implements OnInit {
         this.loadPreviousGame();
     }
 
+    startAgain() {
+        localStorage.clear();
+        this.start();
+    }
+
     initBeesState() {
         this.valuesService.beeTypesArray.forEach(beeType => {
             this.bees.push(
