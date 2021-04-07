@@ -26,6 +26,37 @@ describe('GameComponent', () => {
         expect(component).toBeTruthy();
     });
 
+    describe('start method', () => {
+        it('should call initBeesState', () => {
+            const spy = spyOn(component, 'initBeesState');
+            component.start();
+            expect(spy).toHaveBeenCalled();
+        });
+        it('should call initHiveState', () => {
+            const spy = spyOn(component, 'initHiveState');
+            component.start();
+            expect(spy).toHaveBeenCalled();
+        });
+        it('should call loadPreviousGame', () => {
+            const spy = spyOn(component, 'loadPreviousGame');
+            component.start();
+            expect(spy).toHaveBeenCalled();
+        });
+    });
+
+    describe('startAgain method', () => {
+        it('should call initVariables', () => {
+            const spy = spyOn(component, 'initVariables');
+            component.startAgain();
+            expect(spy).toHaveBeenCalled();
+        });
+        it('should call start', () => {
+            const spy = spyOn(component, 'start');
+            component.startAgain();
+            expect(spy).toHaveBeenCalled();
+        });
+    });
+
     describe('initBeesState method', () => {
         it('should populate with the right number of bees', () => {
             const expectedLength = valuesService.beeTypesArray.map(beeType => valuesService.hive[beeType].total)
