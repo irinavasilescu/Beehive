@@ -92,6 +92,29 @@ describe('GameComponent', () => {
         });
     });
 
+    describe('registerDamage method', () => {
+        it('should call setStatus', () => {
+            const spy = spyOn(component, 'setStatus');
+            const bee = { hp: 75, damage: 10, status: valuesService.statuses.healthy, type: valuesService.beeTypes.worker };
+            const hp = 65;
+            component.registerDamage(bee, hp, bee.damage);
+            expect(spy).toHaveBeenCalled();
+        });
+        it('should decrement hive hp with damage', () => {
+            component.hive.hp = 835;
+            const bee = { hp: 75, damage: 10, status: valuesService.statuses.healthy, type: valuesService.beeTypes.worker };
+            const hp = 65;
+            component.registerDamage(bee, hp, bee.damage);
+            expect(component.hive.hp).toEqual(825);
+        });
+        it('should set new hp to damaged bee', () => {
+            const bee = { hp: 75, damage: 10, status: valuesService.statuses.healthy, type: valuesService.beeTypes.worker };
+            const hp = 65;
+            component.registerDamage(bee, hp, bee.damage);
+            expect(bee.hp).toEqual(65);
+        })
+    });
+
     describe('checkGameOver method', () => {
         it('should be over if queen is dead', () => {
             component.bees = [
