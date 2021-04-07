@@ -71,7 +71,7 @@
             <!-- ALL BEES -->
             <div class="flex-parent">
                 <div *ngFor="let bee of bees" class="flex-child">
-                    <app-stats-card [data]="bee" scenario="common"></app-stats-card>
+                    <app-stats-card *ngIf="bee.hp > 0" [data]="bee" scenario="common"></app-stats-card>
                 </div>
             </div>
         </div>

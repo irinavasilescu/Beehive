@@ -39,10 +39,8 @@ export class GameComponent implements OnInit, OnDestroy {
     start() {
         this.initVariables();
         this.initBeesState();
+        this.initHiveState();
         this.loadPreviousGame();
-        if (!this.loadedSavedGame) { 
-            this.calculateHiveStats(); 
-        }
     }
 
     initBeesState() {
@@ -70,8 +68,17 @@ export class GameComponent implements OnInit, OnDestroy {
         }
     }
 
+    initHiveState() {
+        this.hive = {
+            hp: this.bees.map(bee => bee.hp).reduce((acc, val) => acc + val),
+            total: this.valuesService.beeTypesArray.map(beeType => this.valuesService.hive[beeType].hp * this.valuesService.hive[beeType].total).reduce((acc, val) => acc + val),
+            status: this.hive.status ?? 'healthy'
+        }
+    }
+
     pickRandomBee() {
-        return Math.floor(Math.random() * this.bees.length);
+        const limit = this.bees.filter(bee => bee && bee.hp && bee.hp > 0).length;
+        return Math.floor(Math.random() * limit);
     }
 
     damageRandomBee() {
@@ -86,7 +93,6 @@ export class GameComponent implements OnInit, OnDestroy {
             }
             this.registerDamage(this.bees[selectedBeeIndex], dryRunDamage);
             this.checkGameOver();
-            this.filterDeadBees();
             localStorage.setItem(selectedBeeIndex.toString(), dryRunDamage.toString());
         }
 
@@ -151,16 +157,8 @@ export class GameComponent implements OnInit, OnDestroy {
         }   
     }
 
-    filterDeadBees() {
-        this.bees = this.bees.filter(bee => bee && bee.hp && bee.hp > 0);
-    }
-
     calculateHiveStats() {
-        this.hive = {
-            hp: this.bees.map(bee => bee.hp).reduce((acc, val) => acc + val),
-            total: this.valuesService.beeTypesArray.map(beeType => this.valuesService.hive[beeType].hp * this.valuesService.hive[beeType].total).reduce((acc, val) => acc + val),
-            status: this.hive.status ?? 'healthy'
-        }
+        this.hive.hp = this.bees.map(bee => bee.hp).reduce((acc, val) => acc + val);
     }
 
     setPlayerReady() {
@@ -179,7 +177,6 @@ export class GameComponent implements OnInit, OnDestroy {
         this.loadedSavedGame = loaded;
         if (loaded) {
             this.calculateHiveStats();
-            this.filterDeadBees();
             this.setStatuses();
         }
     }
