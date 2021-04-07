@@ -68,7 +68,7 @@ export class GameComponent implements OnInit {
                          .reduce((acc, val) => acc + val),
             total: this.valuesService.beeTypesArray.map(beeType => this.valuesService.hive[beeType].hp * this.valuesService.hive[beeType].total)
                                                    .reduce((acc, val) => acc + val),
-            status: this.hive.status ?? 'healthy'
+            status: this.hive.status ?? this.valuesService.statuses.healthy
         }
     }
 
@@ -119,15 +119,15 @@ export class GameComponent implements OnInit {
         objects.forEach(object => {
             defaultHp = object.type ? this.valuesService.hive[object.type].hp : this.hive.total;
             if (object.hp >= defaultHp * 4/5) {
-                object.status = 'healthy';
+                object.status = this.valuesService.statuses.healthy;
             } else if (defaultHp * 4/5 >= object.hp && object.hp >= defaultHp * 3/5) {
-                object.status = 'warning1';
+                object.status = this.valuesService.statuses.warning1;
             } else if (defaultHp * 3/5 >= object.hp && object.hp >= defaultHp * 2/5) {
-                object.status = 'warning2';
+                object.status = this.valuesService.statuses.warning2;
             } else if (defaultHp * 2/5 >= object.hp && object.hp >= defaultHp * 1/5) {
-                object.status = 'sick1';
+                object.status = this.valuesService.statuses.sick1;
             } else {
-                object.status = 'sick2';
+                object.status = this.valuesService.statuses.sick2;
             }
         })
     }
