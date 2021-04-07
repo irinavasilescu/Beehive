@@ -205,4 +205,27 @@ describe('GameComponent', () => {
             expect(component.playerReady).toBeTrue();
         })
     })
+
+    describe('loadPreviousGame method', () => {
+        it('should call calculateHiveStats', () => {
+            const spy = spyOn(component, 'calculateHiveStats');
+            localStorage.setItem('0', '92');
+            component.loadPreviousGame();
+            expect(spy).toHaveBeenCalled();
+            localStorage.clear();
+        });
+        it('should call setStatuses', () => {
+            const spy = spyOn(component, 'setStatuses');
+            localStorage.setItem('0', '92');
+            component.loadPreviousGame();
+            expect(spy).toHaveBeenCalled();
+            localStorage.clear();
+        });
+        it('should set bees hp', () => {
+            localStorage.setItem('0', '92');
+            component.loadPreviousGame();
+            expect(component.bees[0].hp).toEqual(92);
+            localStorage.clear();
+        })
+    });
 });
