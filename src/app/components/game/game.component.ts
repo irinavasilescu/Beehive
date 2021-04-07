@@ -36,6 +36,7 @@ export class GameComponent implements OnInit {
         this.start();
     }
 
+    // Poate mai simplu
     initBeesState() {
         this.valuesService.beeTypesArray.forEach(beeType => {
             this.bees.push(
@@ -52,6 +53,7 @@ export class GameComponent implements OnInit {
         });
     }
 
+    // De mutat (nu-l mai pun in ngOnInit)
     initVariables() {
         if (this.gameOver === true) {
             this.gameOver = false;
@@ -63,14 +65,17 @@ export class GameComponent implements OnInit {
 
     initHiveState() {
         this.hive = {
-            hp: this.bees.map(bee => bee.hp).reduce((acc, val) => acc + val),
-            total: this.valuesService.beeTypesArray.map(beeType => this.valuesService.hive[beeType].hp * this.valuesService.hive[beeType].total).reduce((acc, val) => acc + val),
+            hp: this.bees.map(bee => bee.hp)
+                         .reduce((acc, val) => acc + val),
+            total: this.valuesService.beeTypesArray.map(beeType => this.valuesService.hive[beeType].hp * this.valuesService.hive[beeType].total)
+                                                   .reduce((acc, val) => acc + val),
             status: this.hive.status ?? 'healthy'
         }
     }
 
     pickRandomBee() {
-        const availableIndexes = this.bees.map((bee, index) => bee.hp > 0 ? index : null).filter(index => index !== null);
+        const availableIndexes = this.bees.map((bee, index) => bee.hp > 0 ? index : null)
+                                          .filter(index => index !== null);
         const limit = availableIndexes.length;
         return availableIndexes[Math.floor(Math.random() * limit)];
     }
@@ -78,29 +83,26 @@ export class GameComponent implements OnInit {
     damageRandomBee() {
         const selectedBeeIndex = this.pickRandomBee();
         if (this.bees[selectedBeeIndex] && this.bees[selectedBeeIndex].hp) {
-            let dryRunDamage = this.bees[selectedBeeIndex].hp - this.bees[selectedBeeIndex].damage;
-            if (dryRunDamage < 0) {
-                dryRunDamage = 0;
+            let dryRunHp = this.bees[selectedBeeIndex].hp - this.bees[selectedBeeIndex].damage;
+            if (dryRunHp <= 0) {
+                dryRunHp = 0;
+                this.checkGameOver();
             }
-            this.registerDamage(this.bees[selectedBeeIndex], dryRunDamage);
-            this.checkGameOver();
-            localStorage.setItem(selectedBeeIndex.toString(), dryRunDamage.toString());
+            this.registerDamage(this.bees[selectedBeeIndex], dryRunHp);
+            localStorage.setItem(selectedBeeIndex.toString(), dryRunHp.toString());
         }
     }
 
     registerDamage(bee, hp) {
         bee.hp = hp;
         this.setStatus(bee);
-        this.calculateHiveStats();
+        this.calculateHiveStats();  // poate ar trebui cu minus aici (prea mult for la fiecare hit)
         this.setStatus(this.hive);
         this.damagedBee = bee;
     }
 
     setStatuses() {
-        this.bees.forEach(bee => {
-            this.setStatus(bee);
-        });
-        this.setStatus(this.hive);
+        this.setStatus(...this.bees, this.hive)
     }
 
     checkGameOver() {
@@ -110,40 +112,25 @@ export class GameComponent implements OnInit {
         const areAllBeesDead = filteredBees.every(bee => bee.hp === 0)
         if (isQueenDead || areAllBeesDead) {
             this.gameOver = true;
-            localStorage.clear();
         }
     }
 
-    /**
-     * Sets health status
-     * @param object bee or hive
-     */
-    setStatus(object) {
-        if (object.type) {
-            if (object.hp >= this.valuesService.hive[object.type].hp * 4/5) {
+    setStatus(...objects) {
+        let defaultHp;
+        objects.forEach(object => {
+            defaultHp = object.type ? this.valuesService.hive[object.type].hp : this.hive.total;
+            if (object.hp >= defaultHp * 4/5) {
                 object.status = 'healthy';
-            } else if (this.valuesService.hive[object.type].hp * 4/5 >= object.hp && object.hp >= this.valuesService.hive[object.type].hp * 3/5) {
+            } else if (defaultHp * 4/5 >= object.hp && object.hp >= defaultHp * 3/5) {
                 object.status = 'warning1';
-            } else if (this.valuesService.hive[object.type].hp * 3/5 >= object.hp && object.hp >= this.valuesService.hive[object.type].hp * 2/5) {
+            } else if (defaultHp * 3/5 >= object.hp && object.hp >= defaultHp * 2/5) {
                 object.status = 'warning2';
-            } else if (this.valuesService.hive[object.type].hp * 2/5 >= object.hp && object.hp >= this.valuesService.hive[object.type].hp * 1/5) {
+            } else if (defaultHp * 2/5 >= object.hp && object.hp >= defaultHp * 1/5) {
                 object.status = 'sick1';
             } else {
                 object.status = 'sick2';
             }
-        } else {
-            if (object.hp >= this.hive.total * 4/5) {
-                object.status = 'healthy';
-            } else if (this.hive.total * 4/5 >= object.hp && object.hp >= this.hive.total * 3/5) {
-                object.status = 'warning1';
-            } else if (this.hive.total * 3/5 >= object.hp && object.hp >= this.hive.total * 2/5) {
-                object.status = 'warning2';
-            } else if (this.hive.total * 2/5 >= object.hp && object.hp >= this.hive.total * 1/5) {
-                object.status = 'sick1';
-            } else {
-                object.status = 'sick2';
-            }
-        }   
+        })
     }
 
     calculateHiveStats() {
@@ -163,7 +150,7 @@ export class GameComponent implements OnInit {
             }
         });
         if (loaded) {
-            this.calculateHiveStats();
+            this.calculateHiveStats();  // trebuie sa ramana doar aici asta
             this.setStatuses();
         }
     }
