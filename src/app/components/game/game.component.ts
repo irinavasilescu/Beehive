@@ -25,7 +25,6 @@ export class GameComponent implements OnInit {
     }
 
     start() {
-        this.initVariables();
         this.initBeesState();
         this.initHiveState();
         this.loadPreviousGame();
@@ -33,6 +32,7 @@ export class GameComponent implements OnInit {
 
     startAgain() {
         localStorage.clear();
+        this.initVariables();
         this.start();
     }
 
@@ -53,7 +53,6 @@ export class GameComponent implements OnInit {
         });
     }
 
-    // De mutat (nu-l mai pun in ngOnInit)
     initVariables() {
         if (this.gameOver === true) {
             this.gameOver = false;
