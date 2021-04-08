@@ -36,6 +36,9 @@ export class GameComponent implements OnInit {
         this.start();
     }
 
+    /**
+     * Populate bees array with specified number of bees (in values.service), grouped by type
+     */
     initBeesState() {
         this.valuesService.beeTypesArray.forEach(beeType => {
             this.bees.push(
@@ -69,6 +72,9 @@ export class GameComponent implements OnInit {
         }
     }
 
+    /**
+     * Pick random index from remaining bees.
+     */
     pickRandomBee() {
         const availableIndexes = this.bees.map((bee, index) => bee.hp > 0 ? index : null)
                                           .filter(index => index !== null);
@@ -100,6 +106,9 @@ export class GameComponent implements OnInit {
         this.damagedBee = bee;
     }
 
+    /**
+     * Update all statuses (only for readability)
+     */
     setStatuses() {
         this.setStatus(...this.bees, this.hive)
     }
@@ -114,6 +123,11 @@ export class GameComponent implements OnInit {
         }
     }
 
+    /**
+     * Update statuses based on value ranges.
+     * Statuses will be assigned as classes for suggestive UI.
+     * @param objects bee / hive
+     */
     setStatus(...objects) {
         let defaultHp;
         objects.forEach(object => {
@@ -140,6 +154,9 @@ export class GameComponent implements OnInit {
         this.playerReady = true;
     }
     
+    /**
+     * Check local storage for existing entries and update bees if necessary.
+     */
     loadPreviousGame() {
         let loaded = false;
         this.bees.forEach((bee, index) => {
