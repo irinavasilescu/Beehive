@@ -1,0 +1,1 @@
+html{--healthy:#2ecc71;--warning:#f1c40f;--sick:#e74c3c;--damage:#e67e22;--pale:#ffded4}.healthy{color:var(--healthy)}.warning1,.warning2{color:var(--warning)}.sick1,.sick2{color:var(--sick)}.damage{color:var(--damage)}
