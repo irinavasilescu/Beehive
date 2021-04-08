@@ -143,7 +143,13 @@ describe('GameComponent', () => {
             const hp = 65;
             component.registerDamage(bee, hp, bee.damage);
             expect(bee.hp).toEqual(65);
-        })
+        });
+        it('should set new hp to 0 if overkill', () => {
+            const bee = { hp: 5, damage: 10, status: valuesService.statuses.healthy, type: valuesService.beeTypes.worker };
+            const hp = 0;
+            component.registerDamage(bee, hp, bee.damage);
+            expect(bee.hp).toEqual(0);
+        });
     });
 
     describe('checkGameOver method', () => {
